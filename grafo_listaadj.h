@@ -1,15 +1,16 @@
 #include <stdbool.h>
 
-typedef int Peso; 
+typedef float Peso; 
 
 typedef struct str_aresta {
     int vdest;
     Peso peso;
     struct str_aresta * prox;
 } Aresta;
+typedef Aresta* Apontador;
 
 typedef struct {
-    Aresta**listaAdj;
+    Apontador* listaAdj;
     int nroVertices;
     int nroArestas;
 } Grafo;

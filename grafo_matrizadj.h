@@ -10,9 +10,11 @@ typedef struct {
     int nroVertices;
     int nroArestas;
 } Grafo;
+typedef int Apontador;
 
 void inicializaGrafo(Grafo *grafo, int nv);
 void insereAresta(int v1, int v2, Peso peso, Grafo *grafo);
 bool existeAresta(int v1, int v2, Grafo *grafo);
 void removeAresta(int v1, int v2, Peso *peso, Grafo *grafo);
+Apontador proxListaAdj(int v, Grafo* grafo, Apontador atual);
 void imprimeGrafo(Grafo *grafo);

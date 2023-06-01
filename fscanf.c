@@ -16,6 +16,7 @@ int main (int argc, char** argv) {
     int numVertices, numArestas, numConsultas;
     if (fscanf(fp, "%d %d %d", &numVertices, &numArestas, &numConsultas) != 3){
         /* mensagem explicando o erro e sai */
+        fprintf(stderr, "Erro: Primeira linha tem mais de 3 caracteres");
     }
     int a, b;
     float c;

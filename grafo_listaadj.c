@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "grafo_listaadj.h"
 
 void inicializaGrafo(Grafo *grafo, int nv) {
@@ -7,10 +8,11 @@ void inicializaGrafo(Grafo *grafo, int nv) {
     /* if (nv <= 0) {
         fprintf(stderr"erro: ")
     } */
-
-    grafo->nroVertices = nv;
+     
     grafo->listaAdj = (Apontador*) calloc(nv+1, sizeof(Apontador));
+    grafo->nroVertices = nv;
     grafo->nroArestas = 0;
+    printf("grafo inicializado\n");
     //calloc ja inicializa as listas de adjacencia com zeros
     return;
 }
@@ -23,33 +25,33 @@ void insereAresta(int v1, int v2, Peso peso, Grafo *grafo) {
     p->prox = grafo->listaAdj[v1];
     grafo->listaAdj[v1] = p;
     grafo->nroArestas++;
+    printf("aresta inserida\n");
 }
 
 int main(int argc, char const *argv[])
 {   
-    if (argc != 2) {
-        /* mensagem explicando o erro e sai */
-    }
+    printf("pelo menos entrou na porra do main\n");
     FILE* fp = fopen(argv[1], "r");
-    if (!fp) {
-        /* mensagem explicando o erro e sai */
-    }
     
     /* le primeira linha do arquivo de entrada */
     int numVertices, numArestas, numConsultas;
     fscanf(fp, "%d %d %d", &numVertices, &numArestas, &numConsultas);
 
     /* inicializa grafo */
-    Grafo grafo;
+    Grafo *grafo = (Grafo *)malloc(sizeof(Grafo));
     inicializaGrafo(grafo, numVertices);
 
-    while (fscanf(fp) != EOF) {
-        int v1, v2;
-        float peso;
+    /* le arestas */
+    int v1, v2;
+    float peso;
+    int valuesRead;
+    for (int i = 0; i < numArestas; i++) {
+        printf("dentro do for loop\n");
         fscanf(fp, "%d %d %f", &v1, &v2, &peso);
         insereAresta(v1, v2, peso, grafo);
     }
-    
+
+    printf("leu e armazenou\n");
     /* depois de ler todo o arquivo não esqueça de fechá-lo */
     fclose(fp);
     return 0;

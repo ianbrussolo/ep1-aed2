@@ -1,5 +1,8 @@
 #include <stdbool.h>
 
+#define AN -1 //ausencia de aresta
+#define VERTICE_INVALIDO NULL    //vertice inexistente   
+
 typedef float Peso; 
 
 typedef struct str_aresta {
@@ -21,5 +24,5 @@ bool existeAresta(int v1, int v2, Grafo *grafo);
 void removeAresta(int v1, int v2, Peso *peso, Grafo *grafo);
 bool listaAdjVazia(int v, Grafo *grafo);
 int primeiroListaAdj(int v, Grafo *grafo);
-int proxListaAdj(int v, Grafo *grafo, int prox);
+Apontador proxListaAdj(int v, Grafo *grafo, Apontador atual);
 void imprimeGrafo(Grafo *grafo);

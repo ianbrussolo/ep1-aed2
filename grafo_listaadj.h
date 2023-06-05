@@ -18,8 +18,8 @@ typedef struct {
     int nroArestas;
 } Grafo;
 
-void inicializaGrafo(Grafo *grafo, int nv);
-void insereAresta(int v1, int v2, Peso peso, Grafo *grafo);
+void inicializaGrafo(Grafo **grafo, int nv);
+void insereAresta(int v1, int v2, Peso peso, Grafo **grafo);
 bool existeAresta(int v1, int v2, Grafo *grafo);
 void removeAresta(int v1, int v2, Peso *peso, Grafo *grafo);
 bool listaAdjVazia(int v, Grafo *grafo);

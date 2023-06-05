@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "grafo_listaadj.h"
-// #include "grafo_matrizadj.h"
+/* #include "grafo_matrizadj.h" */
 
 /* void trataResultadosBusca(Apontador aresta) {
   for(int i = 0; i <= aresta->size; i++) {
@@ -13,6 +13,16 @@
     else aresta->listaAdj[i].weight = -1;
   }
 } */
+void imprimeGrafo(Grafo* grafo) {
+    printf("Graph:\n");
+    for (int v = 0; v < grafo->nroVertices; v++) {
+        Apontador atual = grafo->listaAdj[v];
+        while (atual != NULL) {
+            printf("(%d) -- %.1f -- (%d)\n", v, atual->peso, atual->vdest);
+            atual = atual->prox;
+        }
+    }
+}
 
 int main(int argc, char const *argv[])
 {   
@@ -43,7 +53,7 @@ int main(int argc, char const *argv[])
     /* depois de ler todo o arquivo não esqueça de fechá-lo */
     fclose(fp);
 
-
+    imprimeGrafo(grafo);
 
     return 0;
 }

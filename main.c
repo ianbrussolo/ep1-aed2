@@ -13,15 +13,51 @@
     else aresta->listaAdj[i].weight = -1;
   }
 } */
-void imprimeGrafo(Grafo* grafo) {
-    printf("Graph:\n");
-    for (int v = 0; v < grafo->nroVertices; v++) {
-        Apontador atual = grafo->listaAdj[v];
-        while (atual != NULL) {
-            printf("(%d) -- %.1f -- (%d)\n", v, atual->peso, atual->vdest);
-            atual = atual->prox;
+
+typedef struct {
+    int v;
+    int peso;
+} VerticePeso;
+
+VerticePeso* prim(int origem, GrafoMatrix* grafo) {
+    int numVertices = grafo->nroVertices;
+    bool* visitado = (bool*)calloc(numVertices, sizeof(bool));
+    VerticePeso* resultado = (VerticePeso*)malloc(numVertices * sizeof(VerticePeso));
+
+    for (int i = 0; i < numVertices; i++) {
+        resultado[i].v = -1;
+        resultado[i].peso = -1;
+    }
+
+    resultado[origem].v = origem;
+    resultado[origem].peso = 0;
+
+    for (int count = 0; count < numVertices - 1; count++) {
+        int u = -1;
+        int minPeso = __INT_MAX__;
+
+        for (int v = 0; v < numVertices; v++) {
+            if (!visitado[v] && resultado[v].peso != -1 && resultado[v].peso < minPeso) {
+                u = v;
+                minPeso = resultado[v].peso;
+            }
+        }
+
+        if (u == -1)
+            break;
+
+        visitado[u] = true;
+
+        for (int v = 0; v < numVertices; v++) {
+            if (!visitado[v] && grafo->matriz[u][v] != 0 && grafo->matriz[u][v] > resultado[v].peso) {
+                resultado[v].v = u;
+                resultado[v].peso = grafo->matriz[u][v];
+            }
         }
     }
+
+    free(visitado);
+    return resultado;
 }
 
 int main(int argc, char const *argv[])
@@ -40,7 +76,6 @@ int main(int argc, char const *argv[])
     int v1, v2;
     float peso;
     for (int i = 0; i < numArestas; i++) {
-        printf("dentro do for loop\n");
         fscanf(fp, "%d %d %f", &v1, &v2, &peso);
         insereAresta(v1, v2, peso, &grafo);
     }

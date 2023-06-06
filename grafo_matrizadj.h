@@ -4,7 +4,7 @@
 #define AN -1 //ausencia de aresta
 #define VERTICE_INVALIDO -1 //vertice inexistente
 
-typedef int Peso;
+typedef float Peso;
 typedef struct {
     Peso mat[MAXNUMVERTICES + 1][MAXNUMVERTICES + 1];
     int nroVertices;

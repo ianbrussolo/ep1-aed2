@@ -14,7 +14,7 @@ typedef int Apontador;
 
 void inicializaGrafo(Grafo **grafo, int nv);
 void insereAresta(int v1, int v2, Peso peso, Grafo **grafo);
-bool existeAresta(int v1, int v2, Grafo *grafo);
-void removeAresta(int v1, int v2, Peso *peso, Grafo *grafo);
+void obterPesoEDestino(Grafo *grafo, int v1, int indiceAresta, int *dest, Peso *peso);
+int obterNroArestas(Grafo *grafo, int v1);
 Apontador proxListaAdj(int v, Grafo* grafo, Apontador atual);
 void imprimeGrafo(Grafo *grafo);

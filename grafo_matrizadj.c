@@ -32,3 +32,20 @@ void imprimeGrafo(Grafo* grafo) {
         }
     }
 }
+
+void obterPesoEDestino(Grafo *grafo, int v1, int indiceAresta, int *dest, Peso *peso){
+	if((v1 < 0) || (v1 > grafo->nroVertices)) return;
+	if(grafo->mat[v1][indiceAresta] == 0) {
+		*dest = -1;
+		*peso = -1;
+		return;
+	} else {
+		*dest = indiceAresta;
+		*peso = grafo->mat[v1][indiceAresta];
+		return;
+	}
+};
+
+int obterNroArestas(Grafo *grafo, int v1){
+	return (grafo->nroVertices + 1);
+};

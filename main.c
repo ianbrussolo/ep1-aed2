@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "grafo_listaadj.h"
-/* #include "grafo_matrizadj.h" */
+/* #include "grafo_listaadj.h" */
+#include "grafo_matrizadj.h"
 
 /* void trataResultadosBusca(Apontador aresta) {
   for(int i = 0; i <= aresta->size; i++) {
@@ -19,7 +19,7 @@ typedef struct {
     int peso;
 } VerticePeso;
 
-VerticePeso* prim(int origem, GrafoMatrix* grafo) {
+VerticePeso* prim(int origem, Grafo* grafo) {
     int numVertices = grafo->nroVertices;
     bool* visitado = (bool*)calloc(numVertices, sizeof(bool));
     VerticePeso* resultado = (VerticePeso*)malloc(numVertices * sizeof(VerticePeso));
